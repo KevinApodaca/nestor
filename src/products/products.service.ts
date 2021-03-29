@@ -17,10 +17,15 @@ export class ProductsService {
   }
 
   getSingleProduct(productId: string) {
-    const product = this.products.find((prod) => prod.id === productId);
+    const product = this.findProduct(productId)
+    return {...product};
+  }
+
+  private findProduct(id: string) {
+    const product = this.products.find((prod) => prod.id === id);
     if (!product) {
       throw new NotFoundException('Could not find the product');
     }
-    return {...product};
+    return product;
   }
 }
